@@ -8,12 +8,10 @@ RUN wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.
 RUN mkdir /data && chown elasticsearch:elasticsearch /data
 RUN mkdir /etc/elasticsearch/master && mkdir /etc/elasticsearch/data
 
-COPY master/ /etc/elasticsearch/master/
-COPY data/ /etc/elasticsearch/data/
+COPY conf/master/ /etc/elasticsearch/master/
+COPY conf/data/ /etc/elasticsearch/data/
 
 RUN chown -R elasticsearch:elasticsearch /etc/elasticsearch/
 
-COPY supervisord.conf /etc/supervisor/supervisord.conf
-COPY start.sh /start.sh
-RUN chmod a+x /start.sh
+COPY conf/supervisord.conf /etc/supervisor/supervisord.conf
 #USER elasticsearch
